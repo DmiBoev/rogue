@@ -1,0 +1,2 @@
+// Agregeshion game
+package domain

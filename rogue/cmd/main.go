@@ -1,0 +1,2 @@
+// entre point
+package main
