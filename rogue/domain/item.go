@@ -17,6 +17,10 @@ const (
 type ItemSubtype string
 
 const (
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1ae4c66701125a6b650f1e287fe3dde526131783
 	// Зелья
 	SubtypePotionHeal      ItemSubtype = "potion_heal"
 	SubtypePotionStrength  ItemSubtype = "posion_strenght"
@@ -24,6 +28,7 @@ const (
 	SubtypePotionBlindness ItemSubtype = "potion_blidness"
 
 	// Свитки
+<<<<<<< HEAD
 	SubtypeScrollTeleport ItemSubtype = "scroll_teleport"
 	SubtypeScrollIdentify ItemSubtype = "scroll_identify"
 	SubtypeScrollCursed   ItemSubtype = "scroll_cursed"
@@ -42,12 +47,36 @@ const (
 )
 
 type ItemSpec struct {
+=======
+	SubtypeScrollTeleport ItemSubtype
+	SubtypeScrollIdentify ItemSubtype
+	SubtypeScrollCursed   ItemSubtype
+
+	// Оружие
+	SubtypeWeaponDagger ItemSubtype
+	SubtypeWeaponSword  ItemSubtype
+
+	// Броня
+	SubtypeArmorLeather ItemSubtype
+	SubtypeArmorChain   ItemSubtype
+
+	// Еда
+	SubtypeFoodRation ItemSubtype
+	SubtypeFoodApple  ItemSubtype
+)
+
+type Item struct {
+>>>>>>> 1ae4c66701125a6b650f1e287fe3dde526131783
 	Type    ItemType
 	Subtype ItemSubtype
 
 	Name   string
 	Symbol rune
+<<<<<<< HEAD
 	//Pos    Position
+=======
+	Pos    Position
+>>>>>>> 1ae4c66701125a6b650f1e287fe3dde526131783
 
 	Charges int // для жезлов
 	Amount  int // для золота, еды
@@ -56,6 +85,16 @@ type ItemSpec struct {
 	Identified bool // опознан ли предмет (в Rogue зелья и свитки сначала неопознаны)
 }
 
+<<<<<<< HEAD
 var ItemCatalog map[ItemSubtype]ItemSpec{
 
 }
+=======
+type ItemSpec struct {
+	Type   ItemType
+	Name   string // "зелье лечения"
+	Symbol rune   // '!'
+	Effect int    // сила эффекта
+	//что нужно
+}
+>>>>>>> 1ae4c66701125a6b650f1e287fe3dde526131783
