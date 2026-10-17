@@ -17,10 +17,9 @@ const (
 type ItemSubtype string
 
 const (
-<<<<<<< HEAD
-=======
-
->>>>>>> 1ae4c66701125a6b650f1e287fe3dde526131783
+	// Wand
+	SubtypeWandFire ItemSubtype = "wand_fire"
+	SubtypeWandIce  ItemSubtype = "wand_ice"
 	// Зелья
 	SubtypePotionHeal      ItemSubtype = "potion_heal"
 	SubtypePotionStrength  ItemSubtype = "posion_strenght"
@@ -28,7 +27,6 @@ const (
 	SubtypePotionBlindness ItemSubtype = "potion_blidness"
 
 	// Свитки
-<<<<<<< HEAD
 	SubtypeScrollTeleport ItemSubtype = "scroll_teleport"
 	SubtypeScrollIdentify ItemSubtype = "scroll_identify"
 	SubtypeScrollCursed   ItemSubtype = "scroll_cursed"
@@ -44,39 +42,18 @@ const (
 	// Еда
 	SubtypeFoodRation ItemSubtype = "food_ration"
 	SubtypeFoodApple  ItemSubtype = "food_apple"
+
+	// Gold
+	SubtypeGold ItemSubtype = "gold"
 )
 
 type ItemSpec struct {
-=======
-	SubtypeScrollTeleport ItemSubtype
-	SubtypeScrollIdentify ItemSubtype
-	SubtypeScrollCursed   ItemSubtype
-
-	// Оружие
-	SubtypeWeaponDagger ItemSubtype
-	SubtypeWeaponSword  ItemSubtype
-
-	// Броня
-	SubtypeArmorLeather ItemSubtype
-	SubtypeArmorChain   ItemSubtype
-
-	// Еда
-	SubtypeFoodRation ItemSubtype
-	SubtypeFoodApple  ItemSubtype
-)
-
-type Item struct {
->>>>>>> 1ae4c66701125a6b650f1e287fe3dde526131783
 	Type    ItemType
 	Subtype ItemSubtype
 
 	Name   string
 	Symbol rune
-<<<<<<< HEAD
 	//Pos    Position
-=======
-	Pos    Position
->>>>>>> 1ae4c66701125a6b650f1e287fe3dde526131783
 
 	Charges int // для жезлов
 	Amount  int // для золота, еды
@@ -85,16 +62,121 @@ type Item struct {
 	Identified bool // опознан ли предмет (в Rogue зелья и свитки сначала неопознаны)
 }
 
-<<<<<<< HEAD
-var ItemCatalog map[ItemSubtype]ItemSpec{
-
+var ItemCatalog = map[ItemSubtype]ItemSpec{
+	//Food
+	SubtypeFoodRation: {
+		Type:   ItemTypeFood,
+		Name:   "Strong Ration",
+		Symbol: '!',
+		Effect: 3,
+		Amount: 5,
+	},
+	SubtypeFoodApple: {
+		Type:   ItemTypeFood,
+		Name:   "Apple",
+		Symbol: '!',
+		Effect: 1,
+		Amount: 2,
+	},
+	//Poison
+	SubtypePotionHeal: {
+		Type:   ItemTypePotion,
+		Name:   "Heal posion",
+		Symbol: '?',
+		Effect: 10,
+		Amount: 6,
+	},
+	SubtypePotionConfusion: {
+		Type:   ItemTypePotion,
+		Name:   "Poison hmm..?",
+		Symbol: '?',
+		Effect: -2,
+		Amount: 3,
+	},
+	SubtypePotionStrength: {
+		Type:   ItemTypePotion,
+		Name:   "Strong poison",
+		Symbol: '?',
+		Effect: 2,
+		Amount: 6,
+	},
+	SubtypePotionBlindness: {
+		Type:   ItemTypePotion,
+		Name:   "Sun poison",
+		Symbol: '?',
+		Effect: -2,
+		Amount: 0,
+	},
+	//Armor
+	SubtypeArmorChain: {
+		Type:   ItemTypeArmor,
+		Name:   "",
+		Symbol: 'a',
+		Effect: 1,
+		Amount: 3,
+	},
+	SubtypeArmorLeather: {
+		Type:   ItemTypeArmor,
+		Name:   "",
+		Symbol: 'a',
+		Effect: 2,
+		Amount: 5,
+	},
+	//weapon
+	SubtypeWeaponDagger: {
+		Type:   ItemTypeWeapon,
+		Name:   "Dagger",
+		Symbol: ')',
+		Effect: 4,
+		Amount: 2,
+	},
+	SubtypeWeaponSword: {
+		Type:   ItemTypeWeapon,
+		Name:   "Sword",
+		Symbol: '!',
+		Effect: 3,
+		Amount: 3,
+	},
+	//scroll
+	SubtypeScrollCursed: {
+		Type:   ItemTypeScroll,
+		Name:   "Cursed Scroll",
+		Symbol: '&',
+		Effect: -2,
+	},
+	SubtypeScrollIdentify: {
+		Type:   ItemTypeScroll,
+		Name:   "Nice Scroll",
+		Symbol: '&',
+		Effect: 1,
+		Amount: 10,
+	},
+	SubtypeScrollTeleport: {
+		Type:   ItemTypeScroll,
+		Name:   "Teleportaion",
+		Symbol: '&',
+	},
+	//gold
+	SubtypeGold: {
+		Type:   ItemTypeGold,
+		Name:   "Gold",
+		Symbol: '-',
+		Amount: 1,
+	},
+	//wand
+	SubtypeWandIce: {
+		Type:    ItemTypeWand,
+		Name:    "Ice wand",
+		Symbol:  '|',
+		Charges: 3,
+		Effect:  3,
+		Amount:  5,
+	},
+	SubtypeWandFire: {
+		Type:    ItemTypeWand,
+		Symbol:  '|',
+		Charges: 6,
+		Effect:  1,
+		Amount:  5,
+	},
 }
-=======
-type ItemSpec struct {
-	Type   ItemType
-	Name   string // "зелье лечения"
-	Symbol rune   // '!'
-	Effect int    // сила эффекта
-	//что нужно
-}
->>>>>>> 1ae4c66701125a6b650f1e287fe3dde526131783
