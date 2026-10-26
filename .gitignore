@@ -1,0 +1,7 @@
+/.cache/
+/bin/
+/saves/
+*.exe
+*.test
+/coverage.out
+/coverage.html
