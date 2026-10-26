@@ -1,35 +1,50 @@
-// player_characteristics
 package domain
 
-type TPlayer string
-
-const ConstPlayer TPlayer = "player"
-
-type TypePlayer struct {
-	Type      TPlayer
-	Name      string
-	Symbol    rune
-	MaxHealth int
-	Health    int
-	Strength  int
-	agility   int
-	weapon    string //?
+type Hero struct {
+	Position                             Position
+	MaxHealth, Health, Strength, Agility int
+	Weapon                               *Item
+	Inventory                            []Item
+	Effects                              []Effect
+	Keys                                 uint8
+	Sleep                                int
 }
 
-var Player = map[TPlayer]TypePlayer{
-	ConstPlayer: {
-		Type:      ConstPlayer,
-		Name:      "Geroy",
-		Symbol:    'i',
-		MaxHealth: 1,
-		Health:    1,
-		Strength:  1,
-		agility:   1,
-		weapon:    "123",
-	},
+type Effect struct {
+	Stat         Stat
+	Bonus, Turns int
 }
 
-type Backpack struct {
-	NumberCell int
-	Item       ItemSpec
+// DamageRange is shared by combat and the equipment display.
+func (h *Hero) DamageRange(weapon *Item) (int, int) {
+	base := h.Strength
+	if weapon != nil {
+		base += weapon.Bonus + h.Strength/3
+	}
+	return base, base + 2
+}
+
+func (h *Hero) Items(kind ItemType) []Item {
+	var items []Item
+	for _, item := range h.Inventory {
+		if item.Type == kind {
+			items = append(items, item)
+		}
+	}
+	return items
+}
+
+func (h *Hero) modify(stat Stat, amount int) {
+	switch stat {
+	case StatHealth:
+		// Vampire drains must not let expiration reduce maximum HP below one.
+		h.MaxHealth = max(1, h.MaxHealth+amount)
+		if h.Health > 0 {
+			h.Health = max(1, min(h.MaxHealth, h.Health+amount))
+		}
+	case StatStrength:
+		h.Strength += amount
+	case StatAgility:
+		h.Agility += amount
+	}
 }
