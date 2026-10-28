@@ -1,0 +1,12 @@
+services:
+  rogue:
+    build: .
+    image: rogue:local
+    stdin_open: true
+    tty: true
+    volumes:
+      - saves:/data
+
+volumes:
+  saves:
+    name: rogue-saves
