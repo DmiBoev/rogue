@@ -32,6 +32,37 @@ directory between launches to find the same save.
 The minimum terminal size is 60×20; the map scrolls with the player.
 At 80×41, the entire map and interface fit on screen.
 
+### Docker
+
+Docker with Compose is required. On Windows, start Docker Desktop in Linux container
+mode. You do not need Go installed on your computer. From this README's directory:
+
+```shell
+docker compose run --build --rm rogue
+```
+
+The game runs in your current terminal: Enter starts or resumes a game, Q saves and
+quits. Saves and records are stored in the `rogue-saves` volume and survive container
+removal. Use the same command next time. To specify a seed:
+
+```shell
+docker compose run --rm rogue -seed 42
+```
+
+Without Compose:
+
+```shell
+docker build -t rogue:local .
+docker run --rm -it --mount source=rogue-saves,target=/data rogue:local
+```
+
+The `-it` flags enable keyboard input and the tcell screen. Use a terminal of at least
+60×20. The container saves to `/data/rogue.json`, separately from the local `saves`
+directory. Do not run multiple games sharing the same volume at once.
+`docker compose down -v` deletes the volume, including saves and records.
+The multi-stage build runs tests and compiles with Go, then copies only the static
+binary into `scratch`. The game runs as a non-root user.
+
 ## Controls
 
 | Key | Action |

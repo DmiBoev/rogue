@@ -1,0 +1,6 @@
+# Only build inputs belong in the context; exclude caches, saves and Git credentials.
+**
+!go.mod
+!go.sum
+!rogue/
+!rogue/**
